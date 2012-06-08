@@ -1,0 +1,36 @@
+便于功能定制和扩展，基于插件平台实现：
+
+实现插件功能，首先在工作目录新建plugins目录，并新建__init__.py文件，把合乎以下格式的插件模块放入该目录，启动程序，将自动加载插件模块，并自动向主程序菜单目录添加菜单项。
+
+#########################################
+#plugin.py文件格式约定
+"""
+def plugin_block():
+	"""
+	插件代码实现
+	"""
+	pass
+
+class Plugin:
+	"""
+	插件管理实现
+	"""
+    def setPlatform(self, platform):
+        self.platform=platform
+
+    def start(self):
+        self.platform.sayHello("plugin1")
+
+        plugin_block()                   #插件代码调用
+
+    def stop(self):
+        self.platform.sayGoodbye("plugin1")
+
+def getPluginClass():
+	"""
+	返回该插件实例
+	"""
+    return Plugin
+"""
+#
+###############################################
